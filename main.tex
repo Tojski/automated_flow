@@ -1,0 +1,138 @@
+
+\documentclass[a4paper, 12pt, twoside]{report} % Document type
+\usepackage[utf8]{inputenc} % Encoding of characters
+\usepackage[UKenglish]{isodate} % Date format
+\usepackage[british]{babel} % Ensure UK English hyphenation and quotation rules used
+\usepackage{parskip} % Whitespace between paragraphs
+\usepackage[inner=3cm,outer=3cm]{geometry} % Margins for first pages
+
+% Prepare fancy header & footer settings
+\usepackage{fancyhdr}
+\renewcommand{\chaptermark}[1]{%
+	\markboth{\chaptername
+		\ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhead{} % clear all header fields
+\fancyhead[RO,LE]{\textbf{\thepage}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyfoot{} % clear all footer fields
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Images
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{float} % Allow forced placement of figures
+\usepackage{subcaption} % Add subfigure and subcaption support
+\usepackage[font=small,labelfont=bf]{caption} % Figure caption support
+\usepackage{chemscheme} %reaction scheme support
+\makeatletter
+\setlength\@fptop{0\p@} % Make images on empty pages (last page of a chapter) show at the top.
+\makeatother
+
+% Bibliography - styles, url formatting.
+\usepackage[hyphens]{url}
+\urlstyle{same}
+\usepackage[hidelinks]{hyperref}
+\usepackage[backend=biber, sorting=none, style=chem-rsc, articletitle=false, alldates=edtf, seconds=true]{biblatex}
+\addbibresource{references.bib}
+%Specific citation from  a book (i.e. when you need to give a pge): \cite[chapter, p.~215]{citation01}
+
+% Chapters and sections.
+\usepackage[titletoc]{appendix}
+\setcounter{secnumdepth}{3} % Limit subsub...sections numbers
+\setcounter{tocdepth}{3} % Limit subsub..sections numbers showing in TOC.
+\addto\captionsukenglish{\renewcommand*\contentsname{Table of Contents}} % TOC name - need "\addto\captionsukenglish" due to using babel package
+
+%	Definitions, theorems etc.
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter] % reset theorem numbering for each chapter
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+
+% Quotes.
+\usepackage[babel=true]{csquotes} % Adjust quotes to language set with 'babel' package - needs to go AFTER \usepackage{babel}
+\MakeOuterQuote{"}
+\usepackage{epigraph} % Fancy quote
+\setlength\epigraphwidth{.8\textwidth}
+\setlength\epigraphrule{0pt}
+
+% Other packages:
+\usepackage{amsmath} % Math - equation*, align* (unnumbered equations) environments
+\renewcommand{\vec}[1]{{\boldsymbol{{#1}}}} % vector (math)
+\usepackage{listings} % Code listings
+\lstdefinestyle{mystyle}{ 
+	breaklines=true
+}
+\lstset{style=mystyle}
+\usepackage{setspace} % Spacing - setstretch and others
+\usepackage{comment} % Multiline comments with \begin{comment}...\end{comment}
+\usepackage[export]{adjustbox} % Adds some additional options/commands when using \includegraphics for figures
+\usepackage{lipsum} % Placeholder texts
+\usepackage{fancyvrb} % Adds fancy verbatim text options
+\usepackage{textcomp} % Improves/makes available some symbols (such as copyright, tm and many others)
+\usepackage{multirow} % Allow using \multirow to have multiple rows in one cell in a table
+\usepackage{siunitx} % For correct unit display
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} % dagger symbols for footnotes
+\usepackage[perpage]{footmisc} %reset footnote per page
+\usepackage{enumitem}
+% Useful optional commands:
+% \setstretch{1.10} Line spacing
+%\renewcommand{\thepage}{\roman{page}}% Roman numerals for page counter
+%\renewcommand{\thepage}{\arabic{page}}% Arabic numerals for page counter
+%\setcounter{page}{1}% Start page number with 1
+
+% Weird ones:
+% Checkmark symbol
+%\usepackage{tikz}
+% \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+% You can use it in text doing: blah blah \checkmark blah blah
+
+% Bibliograhy bug fix for older biblatex distributions - should not be needed (keep commented out)
+%\makeatletter
+%\def\blx@maxline{77}
+%\makeatother
+
+
+\begin{document}
+	% Title page.
+	\input{first_pages/title_page.tex}\pagebreak
+	\newpage\null\thispagestyle{empty}\newpage
+	% Abstract.
+	\input{first_pages/abstract.tex}\pagebreak
+	\newpage\null\thispagestyle{empty}\newpage
+	% Acknowledgements.
+	\input{first_pages/acknowledgements.tex}\pagebreak
+	\newpage\null\thispagestyle{empty}\newpage
+	
+	% Use fancy headers & footers
+	\pagestyle{fancy}
+	% Margins for the pretty double-sided printing
+	\newgeometry{inner=3.25cm,outer=3.25cm, top=3.73cm, bottom=3.73cm}
+	
+	% Table of contents.
+	\setcounter{page}{7}
+	\tableofcontents{}\vfill\pagebreak
+	
+	% Chapters.
+	\input{chapters/introduction.tex}\vfill\pagebreak
+	\input{chapters/examples.tex}\vfill\pagebreak
+	\input{chapters/conclusion.tex}\vfill\pagebreak
+	
+	% Bibliography
+	\addcontentsline{toc}{chapter}{References}
+		% Use 'sloppy' to help break long words in refs.
+		\begingroup
+			\sloppy
+			\printbibliography
+		\endgroup
+	\vfill\pagebreak
+	
+	% Appendices
+	\begin{appendices}
+	    \pagebreak\input{chapters/test_appendix.tex}
+	\end{appendices}
+\end{document}

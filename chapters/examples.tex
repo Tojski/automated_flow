@@ -1,0 +1,182 @@
+\chapter{Examples}
+
+\epigraph{\itshape "I've been working on a new electronic cash system that's fully peer-to-peer, with no trusted third party."}{---Satoshi Nakamoto, \textit{The Cryptography Mailing List} \cite{nakamotoFirstPost}}
+
+We can \textbf{highlight} stuff in \underline{various} \textit{ways} in our text. We can also quote - either using a fancy quote as above or using regular in-line ones such as "I've been ..."\cite{nakamotoFirstPost}. 
+We can \enquote{ \enquote{specify a page and a chapter as well}, said Andrew}\cite[chapter, p.~215]{wattenhofer2016science}.
+Note that for multi-level quotes it is best to use the \textbackslash{}enquote\{\} command which understands which quotation marks it needs to use.
+
+This paragraph is separate from previous text as we used a blank line in LaTex. The spacing is automatic. If we want to force more whitespace, then we use \textbackslash{}\textbackslash{} (a newline).
+\\
+\\
+\\
+\\
+\\
+Each \textbackslash{}\textbackslash{} gives us one blank line. Note that \textbackslash{} is a special character and we need \textbackslash{}textbackslash command to put \textbackslash{} in the text. Many other special characters (e.g. \%, \$, \_, \#, \&, \{, =) can be used in text by putting \textbackslash{} in front of them in LaTex. Some of them, however, require special commands - e.g. for \textgreater we need the \textbackslash{}textgreater command \footnote{Most LaTex symbols can be found here: \url{http://mirror.hmc.edu/ctan/info/symbols/comprehensive/symbols-a4.pdf}}.
+
+We won't need commands like \textbackslash{}textgreater  if  we use the in-line math mode by putting text in between \$ \$ (which exists for in-lining equations etc.) - e.g. $ 4 > 2, 5 < 9 $. Longer equations etc. are easier to write not in-line, e.g.:
+
+\begin{align}
+	\label{eq:der_1}
+	\frac{\partial L}{\partial R} &= 2R - 2\sum_{i=1}^{n} m_i R = 2(1- \sum_{i=1}^{n} m_i)R = 0
+	\implies (1- \sum_{i=1}^{n} m_i)R = 0\\
+	%
+	\label{eq:der_2}
+	\frac{\partial L}{\partial \vec a} &=  \sum_{i=1}^{n} m_i 2(\vec x_i - \vec a)(-1) = -2 \sum_{i=1}^{n} m_i(\vec x_i - \vec a) = 0
+	\implies \sum_{i=1}^{n} m_i(\vec x_i - \vec a) = 0\\
+	%
+	\frac{\partial L}{\partial \xi_i} &= C - m_i - n_i = 0
+	\label{eq:der_3}
+\end{align}
+
+
+Note that equations are aligned on the = symbols we prepended in LaTex with \&. Each line/equation has to end in LaTex with \verb|\\|. In the example above they are all numbered, but numbers can be removed by using \verb|align*| environment instead of the usual \verb|align| or by putting \verb|\nonumber| right before \verb|\\| ending a line. As we also put \verb|\label| commands in LaTex next to the lines/equations, we can now refer e.g. to Equation (\ref{eq:der_2}).
+
+\section{Verbatim and Code}
+
+Another way to emphasise is to use \verb|verbatim style which is pretty funny| and (as you can notice in previous section) allows using many special characters as normal ones: \verb|\ _ % &&|.
+
+\subsection{Code with Verbatim}
+
+We often use verbatim when showing code samples:
+
+\begin{verbatim}
+import numpy as np
+
+def foo(x):
+	sum = x + 5
+	return sum
+\end{verbatim}
+
+\subsection{Fancier Code}
+
+We can also use a \verb|lstlisting| environment to get some syntax highlighting:
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+def foo(x):
+	sum = x + 5
+	return sum
+\end{lstlisting}
+
+\section{Theorems and Defs} \label{sec:theorems}
+
+Examples:
+
+\begin{defn}[Test definition] Here is a new definition.\end{defn}
+
+\begin{thm} 
+	\label{the:test_theo}
+	Here is a new theorem.
+\end{thm}
+
+Note that numbering of theorems and definitions starts with the current chapter number (this can be changed, we set it in our main.tex). As with equations, we can refer to them - e.g. Theorem \ref{the:test_theo}.
+
+\section*{Section With No Number}
+
+Well, it has no number because why not? :) Speaking of section/chapter numbers - as always, we can refer to them if we used \verb|\label| command right after the \verb|\section| command (and we did for Section \ref{sec:theorems} about Theorems).
+
+\section{Lists etc.}
+
+Listing things is useful so:
+
+\begin{itemize}
+	\item Simple list first entry.
+	\item Second entry.
+\end{itemize}
+
+Or you can enumarate if you like:
+
+\begin{enumerate}
+	\item First level item
+	\item First level item
+	\begin{enumerate}
+		\item Second level item
+		\item Second level item
+		\begin{enumerate}
+			\item Third level item
+			\item Third level item
+		\end{enumerate}
+	\end{enumerate}
+	\item First level item
+\end{enumerate}
+
+We can also of course change the numberings/symbols used if we want \footnote{Read about it here: \url{https://www.sharelatex.com/learn/Lists}}.
+
+Finally, the description 'list' is also nice:
+
+\begin{description}
+	\item[Dancing] \lipsum[1]
+	\item[Walking] \lipsum[2]
+\end{description}
+
+\section{Tables and Figures}
+
+A simple Table would be e.g. Table \ref{tab:classified_programs}. Btw, note how numbering changes when we refer to a copy of this table put in our Appendix - Table \ref{tab:classified_programs_appendix}.
+
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Verification technique} & \textbf{Classified programs} \\ \hline
+		Houdini algorithm & 42 \\\hline
+		Sound BMC & 18 \\\hline
+		Translation to C & 20 \\\hline
+		Unsound BMC & 36 \\\hline
+	\end{tabular}
+	\caption{Number of programs classified as correct per technique.}
+	\label{tab:classified_programs}
+\end{table}
+
+
+If you look at LaTex source, you can se we used [!h] where "h" means "place this Table \textbf{h}ere" (i.e. wherever we put it in LaTex source) and the "!" makes the compiler relax some restrictions and try harder to satisfy the request. We can also use b (bottom of page), t (top) or H. The last one puts the Table \textbf{exactly} where we put it in LaTex source - even if it causes empty space on a page/pages etc. Exactly the same placement options can be used with Figures:
+
+\begin{figure}[!t]
+	\begin{centering}
+		\includegraphics[width=0.4\linewidth]{imperial.png}
+		\caption{Test image.}
+		\label{fig:test_imperial}
+	\end{centering}
+\end{figure}
+
+Figure \ref{fig:test_imperial} has [!t] option used (so it is on the top of the page). The next ones (Figures \ref{fig:imperial_mini_page} and \ref{fig:imperial_mini_page_again}) have the [!h] option. Note that they are side-by-side (this is achieved with a "minipage" environment). Alternatively, we can have several images within one Figure such as in case of Figure \ref{fig:imperial_image_left} and Figure \ref{fig:imperial_image_right}.
+
+\begin{figure}[!h]
+	\begin{centering}
+		\begin{minipage}{.60\textwidth}
+			\begin{centering}
+				\includegraphics[height=1cm]{imperial.png}
+				\caption{Imperial image in a minipage.}
+				\label{fig:imperial_mini_page}
+			\end{centering}
+		\end{minipage}
+		\begin{minipage}{.40\textwidth}
+			\begin{centering}
+				\includegraphics[height=1cm]{imperial.png}
+				\caption{Another Imperial image in a minipage.}
+				\label{fig:imperial_mini_page_again}
+			\end{centering}
+		\end{minipage}
+	\end{centering}
+\end{figure}
+
+\begin{figure*}[!h]
+	\begin{subfigure}[b]{.49\textwidth}
+		\centering
+		\includegraphics[width=0.7\linewidth]{imperial.png}
+		\caption{Imperial image - left.}
+		\label{fig:imperial_image_left}
+	\end{subfigure}
+	\begin{subfigure}[b]{.49\textwidth}
+		\centering
+		\includegraphics[width=0.7\linewidth]{imperial.png}
+		\caption{Imperial image - right.}
+		\label{fig:imperial_image_right}
+	\end{subfigure}
+	
+	\caption{Two imperial images.}
+	\label{fig:two_imperial_images}
+\end{figure*}
+
+\textbf{NOTE:} When putting images within one Figure (i.e. as subfigures), do not use e.g. \verb|.50\textwidth| to occupy half of a line for each of your 2 images (or \verb|.25\textwidth| for each of 4 images etc.) - this seems to force one image on the next line of images. Use e.g. \verb|.49\textwidth| instead.
