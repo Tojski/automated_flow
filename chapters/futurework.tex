@@ -1,1 +1,19 @@
 \chapter{Future Work}
+
+The work done in the project leaves the system ready for development into a self-optimising system. The reactor can run for extended periods of time and provide a measure of the polymer molecular weight throughout the synthesis. Outlined below are a few areas in which the system can be improved, and the next steps of the project.
+
+\section{Changing the detection system}
+
+As shown in the results and discussion section, the signal profile provided by the current transmission spectrometer analysis stage provides a different molecular weight profile than the commercial GPC, which uses a differential refractometer (DRI). By changing the current system to also use a DRI to monitor the polymer product, a more accurate calibration of the GPC can be done. This will give a more accurate variable for application to the optimisation procedure. 
+
+\section{Automated control of the GPC system}
+
+Current control of the GPC instrument is done through LabVIEW software, controlled directly from the “front panel” of the program. Each individual analysis of the output THF solution containing the P3HT product is manually initiated. A program could be written in Python for automated control of the GPC instrument, in which successive analyses are run sequentially. This program could then also be used to control the syringe pumps of the flow reactor, allowing for the synthesis and analysis to be controlled remotely. Building this platform would provide the basis of the optimisation algorithm. 
+
+\section{Application of the Optimisation Algorithm}
+
+The work done by B. Walker et. al. outlined in the introduction shows the application of the SNOBFit algorithm to the synthesis of o-xylenyl buckminsterfullerene, with the algorithm analysing the absorption spectrum of the product to vary the flow rates of the reactants and the temperature of the reactor. This algorithm could be applied to the droplet flow reactor, monitoring the molecular weight properties of the P3HT product, and in turn control the flow rates of the reactants and the reactor temperature. 
+
+\section{Application to Further Polymers}
+
+The reactor developed in this project was specifically tailored to the polymerisation of the semiconducting polymer P3HT, specifically in tweaking the synthetic procedure to allow for GPC analysis of the outlet product flow stream. However, the framework of the self-optimising droplet flow reactor could be applied to several semiconducting polymer materials. Bannock et. al. has shown the synthesis of block copolymers and poly(selenophene) materials via a droplet flow method, which suggests that these materials would be good candidates for the self-optimising system.  
