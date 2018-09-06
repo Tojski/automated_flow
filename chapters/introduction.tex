@@ -79,3 +79,44 @@ Of particular interest to the synthesis of polymers with low PD is the phenomena
 \includegraphics{BannockReactor}
 
 The droplet stream then entered a heated oil bath to induce the polymerisation. The resulting P3HT was of high RR (above 98 \%) and low PD (1.2-1.7), and the Mw could be easily controlled through the temperature and flow parameters of the system, up to a Mw of 92 kDa. Unlike the batch synthesis which encounters isssues with increasing viscosity with the synthesis of higher Mws, the small reaction volumes of the droplet flow system result in short diffusion distances for the monomer reagent to reach the active chain ends. Bannock et. al. then demonstrated the synthesis of copolymers of P3HT and P3HS, a selenium-substituted thiophene. By varying the ratio of the thiophene and selenophene reactant flow rates, copolymers of matching stoichiometry could be synthesised. This showed the ability for ease of polymerisation control through the facile control of reagent flow rates.
+
+
+\section{Gel Permeation Chromatography}
+
+Size exclusion chromatography (SEC) is an analytical method of determining the molecular weight properties of a polymer through separation based on the molecule size and volumetric properties. One type of SEC, involving the polymer dissolved in an organic solvent passing through a solid porous gel matrix, is also known as gel permeation chromatography (GPC). Figure 9 shows the operation of a GPC column.
+
+\includegraphics{GPC_Operation}
+
+The column of a GPC is coupled to a detector located at the output. The detector is designed to produce a response based on the material passed through the column. Common detectors probe the sample’s refractive index(REF) or absorption in either the UV(REF) or IR(REF) region. Other detection method, such as light scattering methods(REF) are available.
+
+A typical GPC output can be seen in Figure 10. The axes are plotted with the detector signal against the time that the sample has been present in the column, known as the retention time. The x-axis can also be displayed in the unit ‘retention volume’, which is calculated from the volumetric flow rate of sample injection. The signal obtained increases with increasing polymer concentration at the detector, with the larger polymer eluting through the system faster than the smaller polymer chains. Therefore, a broad signal indicates a large range of polymer chain lengths in the sample, whereas a sharp signal indicates a high degree of uniformity in polymer chain length. This property is quantified in the property polydispersity (Đ). The molecular weight dynamics of semiconducting polymers, such as P3HT, have a large effect on the quality of electronic devices in which they are included(REF), and therefore are important properties to investigate. Whilst different average molecular weights have applications to different electronic devices, most applications require polymers with a low Đ. 
+
+\includegraphics{ExampleGPC}
+
+\subsection{GPC Calibration}
+
+A wide variety of source materials are available for the calibration of GPC instruments. The book “Handbook of Size Exclusion Chromatography” published by C. Wu highlights the variety of calibration methods. The simplest method, used in this project, is known as Direct Standard Calibration (DSC). DSC is an appropriate calibration method for linear samples of low Đ, but it has been shown that more complex polymers, particularly branched dendrimers, require a more sophisticated calibration. Furthermore, samples with large Đ can give an inaccurate reading.
+DSC requires a calibration set, which consists of multiple polymer samples of known molecular weight, and a narrow Đ which should be 1.2 or below. Each sample is run through the GPC, providing a value of retention time for the molecular weight in question. A calibration plot can then be constructed of retention time against the log of molecular weight. An example calibration can be seen in Figure 11.
+
+\includegraphics{CalibExample}
+
+The calibration curve becomes the reportable range in which an accurate measurement can be taken. For this reason, a wide calibration set is necessary to create an instrument able to analyse a wide range of samples.
+
+\section{Automation}
+
+The application of automation of chemical reactions and processes provides an ideal solution to the demand for repeated experimentation and consistent and accurate test conditions vital to both research and industry. A study on the effect of laboratory automation in the medical profession over the last 36 published in 2003 by Sarkozi et. al. demonstrates the efficacy of automation. Figure 12 shows a graphical depiction of the volume of tests performed per employee at an institution are shown alongside the cost per test, as well as the number of employees against the gross number of tests performed per year.
+
+\includegraphics{Auto1}
+\includegraphics{Auto2}
+
+Notable changes in trends seen in the data could be attributed to the introduction of automated system to the institution. The increase in productivity seen between 1965 and 1980 coincided with the introduction of multi-test analysers that had a much higher sample throughput rate. The installation of a robotic analysis system in 1998 can be attributed to the increase in productivity seen after 1997. Even though there was a reduction in staff numbers by 24 %, the number of tests performed increased by 6.8 % a year.
+Automated flow chemistry is a recent advancement in flow chemistry technology. A simple diagram for the operation of a self-optimising flow reactor can be found in the review by M. Rasheed et. al., shown in Figure 13. 
+
+\includegraphics{autoskel}
+
+The ‘hands-off’ approach is appropriately referred to as a black box system. Desired product properties are input to the system, and through a combination of analysis, data processing and automated control of reaction conditions the system can reach the target product through multiple iterations without manual interaction.
+
+This basic operating principle can be tailored to be applicable to a variety of synthetic pathways. If a product can be accurately described from any quantifiable analytical technique in-line, parameters such as reaction temperature, reactant flow rate and stoichiometric flow ratios can be remotely controlled to reach the optimal conditions for the target product property under analysis.
+
+The optimisation of the system is controlled by an optimisation algorithm. The algorithm aims to assign a quality value to the product of a collection of parameters, and from that intelligently suggest new reaction parameters to investigate. The algorithm employed by the John de Mello research group, such as in the publication by Krishnadasaan et. al. investigating inorganic nanoparticles, is known as the SNOBFIT (Stable Noisy Optimisation by Branch and Fit) algorithm. This algorithm, developed by W. Huyer and A. Neumaier, uses response surface methodology (RSM) to intelligently select successive reaction parameters, the theory of which can be found in X. This was used by B.E. Walker et. al. in the synthesis of o-xylenyl buckminsterfullerene adducts via a Diels-Alder cycloaddition, with the analysis following a similar setup to the reactor in this project, consisting of an HPLC pump connected to a silica column, with the output monitored with an LED and photodiode.
+
